@@ -158,24 +158,27 @@ def login():
 def main():
     global screen
     screen = Tk()
-    screen.geometry("300x250")
+    screen.config(bg="grey38")
+    screen.geometry("500x400")
     screen.title("Log in and register page")
 
     logo_frame = Frame(screen).pack()
-    logo = PhotoImage(file="MicrosoftTeams-image.png")
+    logo = PhotoImage(file="MicrosoftTeams-image-200.png")
     logo_label = Label(logo_frame, image=logo).pack()
 
-    Button(text="Login", height=2, width=30, command=login).pack()
-    Button(text="Regiser", height="2", width="30", command=register).pack()
+    labels_frame = Frame(screen)
+    labels_frame.pack()
 
-    screen.resizable=(False,False)
+    mediapp = Label(labels_frame, text="MediApp", bg="grey", font=("Arials", 13))
+    mediapp.grid(row=0, column=0)
+
+    loginbutton = Button(labels_frame, text="Login", command=login)
+    loginbutton.grid(row=1, column=0)
+
+    registerbutton = Button(labels_frame, text="Register", command=register)
+    registerbutton.grid(row=2, column=0)
 
     screen.mainloop()
-    screen2.mainloop()
-    screen3.mainloop()
-    screen4.mainloop()
-    screen5.mainloop()
-    screen6.mainloop()
 
 
 main()
