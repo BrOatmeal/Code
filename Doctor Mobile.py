@@ -1,46 +1,9 @@
 import tkinter as tk
 
-login = tk.Tk()
-login.title("MediApp Login")
-login.geometry("200x125")
-
 window = tk.Tk()
 window.title("MediApp")
 window.geometry("300x550")
 window.resizable(False, False)
-
-window.withdraw()
-
-
-def loginfunc():
-
-    username = "Doctor"
-    password = "password"
-
-    ubox = Username.get()
-    pbox = Password.get()
-
-    if ubox == username and pbox == password:
-        login.withdraw()
-        window.deiconify()
-
-    else:
-        print("wrong password")
-
-
-Username = tk.Entry(login, width=20)
-Username.grid(row=0, column=1)
-usernameLabel = tk.Label(login, text="Username:")
-usernameLabel.grid(row=0, column=0)
-
-Password = tk.Entry(login, width=20)
-Password.config(show="*")
-Password.grid(row=1, column=1)
-passwordLabel = tk.Label(login, text="Password:")
-passwordLabel.grid(row=1, column=0)
-
-loginButton = tk.Button(login, text="Login", width=5, command=loginfunc)
-loginButton .grid(row=2, column=0, columnspan=2)
 
 frame = tk. Frame(window, height=66, width=200, highlightbackground="black", highlightthickness=2)
 frame.place(x=80, y=10)
@@ -71,4 +34,3 @@ PatMedDat = tk.Label(window, text="Patient Medical Records", height=8, width=40,
 PatMedDat.place(x=7, y=400)
 
 window.mainloop()
-login.mainloop()
