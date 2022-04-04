@@ -2,7 +2,7 @@ from tkinter import *
 import csv
 import os
 import pandas as pd
-import tkinter as tk
+
 
 def patientpage():
     global screen6
@@ -10,33 +10,34 @@ def patientpage():
     screen6.title("patient profile")
     screen6.geometry("300x500")
 
-    frame = tk.Frame(screen6, height=66, width=200, highlightbackground="black", highlightthickness=2)
+    frame = Frame(screen6, height=66, width=200, highlightbackground="black", highlightthickness=2)
     frame.place(x=80, y=10)
 
-    profilePic = tk.Label(screen6, height=4, width=8, bg="green")
+    profilePic = Label(screen6, height=4, width=8, bg="green")
     profilePic.place(x=7, y=10)
 
-    name = tk.Label(frame, text="Name:       ")
+    name = Label(frame, text="Name:       ")
     name.grid(column=0, row=0)
-    sex = tk.Label(frame, text="Sex:       ")
+    sex = Label(frame, text="Sex:       ")
     sex.grid(column=0, row=1)
-    DoB = tk.Label(frame, text="DoB:       ")
+    DoB = Label(frame, text="DoB:       ")
     DoB.grid(column=0, row=2)
 
-    settings = tk.Button(text=u"\u2699", height=2, width=4)
+    settings = Button(text=u"\u2699", height=2, width=4)
     settings.place(x=260, y=15)
 
-    Appointments = tk.Label(screen6, text="Appointments", height=10, width=40, relief="solid")
+    Appointments = Label(screen6, text="Appointments", height=10, width=40, relief="solid")
     Appointments.place(x=7, y=80)
 
-    CurPre = tk.Label(screen6, text="Current Prescriptions", height=10, width=18, relief="solid")
+    CurPre = Label(screen6, text="Current Prescriptions", height=10, width=18, relief="solid")
     CurPre.place(x=7, y=240)
 
-    CurPat = tk.Label(screen6, text="Current Patients", height=10, width=18, relief="solid")
+    CurPat = Label(screen6, text="Current Patients", height=10, width=18, relief="solid")
     CurPat.place(x=160, y=240)
 
-    PatMedDat = tk.Label(screen6, text="Patient Medical Records", height=8, width=40, relief="solid")
+    PatMedDat = Label(screen6, text="Patient Medical Records", height=8, width=40, relief="solid")
     PatMedDat.place(x=7, y=400)
+
 
 def login_success():
     global screen3
@@ -49,6 +50,7 @@ def login_success():
 
     patientpage()
 
+
 def password_not_found():
     global screen4
     screen4 = Toplevel(screen)
@@ -56,6 +58,7 @@ def password_not_found():
     screen4.geometry("150x100")
     Label(screen4, text="Password not found").pack()
     Button(screen4, text="OK", command=screen4.withdraw()).pack()
+
 
 def user_not_found():
     global screen5
@@ -66,21 +69,22 @@ def user_not_found():
     Button(screen5, text="OK", command=screen4.withdraw()).pack()
     screen5.withdraw()
 
-def register_user():
 
+def register_user():
     print("Working.....")
     username_info = username.get()
     password_info = password.get()
 
     file = open("info.csv", "a")
-    file.write(username_info+"\n")
-    file.write(password_info+"\n"+"\n")
+    file.write(username_info + "\n")
+    file.write(password_info + "\n" + "\n")
     file.close()
 
     username_entry.delete(0, END)
     password_entry.delete(0, END)
 
     Label(screen1, text="Registeration was a success", fg="White", font=("Arial", 11)).pack()
+
 
 def register():
     global screen1
@@ -107,8 +111,8 @@ def register():
     Label(screen1, text="").pack()
     Button(screen1, text="Register", width=10, height=1, command=register_user).pack()
 
-def login_verify():
 
+def login_verify():
     username1 = username_verify.get()
     password1 = password_verify.get()
     username_entry1.delete(0, END)
@@ -121,13 +125,14 @@ def login_verify():
     if username1 and password1 not in verify:
         user_not_found()
 
+
 def login():
     global screen2
     screen2 = Toplevel(screen)
     screen2.title("Login")
     screen2.geometry("300x250")
     Label(screen2, text="Please enter details below").pack()
-    Label(screen2, text = "").pack()
+    Label(screen2, text="").pack()
 
     global username_verify
     global password_verify
@@ -138,7 +143,6 @@ def login():
     global username_entry1
     global password_entry1
 
-
     Label(screen2, text="Username * ").pack()
     username_entry1 = Entry(screen2, textvariable=username_verify)
     username_entry1.pack()
@@ -147,23 +151,34 @@ def login():
     password_entry1 = Entry(screen2, textvariable=password_verify)
     password_entry1.config(show='*')
     password_entry1.pack()
-    Label(screen2, text = "").pack()
-    Button(screen2, text = "Login", width=10, height=1, command=login_verify).pack()
+    Label(screen2, text="").pack()
+    Button(screen2, text="Login", width=10, height=1, command=login_verify).pack()
+
 
 def main():
     global screen
     screen = Tk()
-    screen.geometry("500x800")
+    screen.config(bg="grey38")
+    screen.geometry("500x400")
     screen.title("Log in and register page")
-    Label(text="MediApp", bg="grey", width="300", height=2, font=("Arials", 13)).pack()
-    Label(text="").pack()
-    Button(text="Login", height=2, width=30, command=login).pack()
-    Label(text="").pack()
-    Button(text="Regiser", height="2", width="30", command=register).pack()
+
     logo_frame = Frame(screen).pack()
-    logo = PhotoImage(file="MicrosoftTeams-image-smol.png")
+    logo = PhotoImage(file="MicrosoftTeams-image-200.png")
     logo_label = Label(logo_frame, image=logo).pack()
 
+    labels_frame = Frame(screen)
+    labels_frame.pack()
+
+    mediapp = Label(labels_frame, text="MediApp", bg="grey", font=("Arials", 13))
+    mediapp.grid(row=0, column=0)
+
+    loginbutton = Button(labels_frame, text="Login", command=login)
+    loginbutton.grid(row=1, column=0)
+
+    registerbutton = Button(labels_frame, text="Register", command=register)
+    registerbutton.grid(row=2, column=0)
+
     screen.mainloop()
+
 
 main()
