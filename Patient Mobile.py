@@ -8,8 +8,6 @@ window.title("MediApp")
 window.geometry("300x550")
 window.resizable(False, False)
 
-
-
 frame = Frame(window, height=66, width=200, highlightbackground="gold2", highlightthickness=2, bg="gold2", relief="solid")
 frame.place(x=80, y=10)
 
@@ -42,7 +40,5 @@ logo_frame = Frame(window).place(x=150, y=10)
 logo = PhotoImage(file="MicrosoftTeams-image-smolish.png")
 logo_label = Label(logo_frame, image=logo)
 logo_label.place(x=150, y=10)
-
-
 
 window.mainloop()
