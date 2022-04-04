@@ -38,7 +38,7 @@ def PatientView():
     envdat = Label(window, text="Environmental Data", height=8, width=40, relief="solid", bg="gold2")
     envdat.place(x=7, y=400)
 
-    logo_frame = Frame(window).pack()
+    logo_frame = Frame(window, height=2, width=5).place(x=150, y=10)
     logo = PhotoImage(file="MicrosoftTeams-image-smolish.png")
     logo_label = Label(logo_frame, image=logo)
     logo_label.place(x=150, y=10)
