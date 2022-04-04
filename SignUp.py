@@ -2,24 +2,52 @@ from tkinter import *
 import csv
 import os
 import pandas as pd
+import tkinter as tk
 
+def patientpage():
+    global screen6
+    screen6 = Toplevel(screen)
+    screen6.title("patient profile")
+    screen6.geometry("300x500")
 
-def delete2():
-    screen3.withdraw()
+    frame = tk.Frame(screen6, height=66, width=200, highlightbackground="black", highlightthickness=2)
+    frame.place(x=80, y=10)
 
-def delete3():
-    screen4.withdraw()
+    profilePic = tk.Label(screen6, height=4, width=8, bg="green")
+    profilePic.place(x=7, y=10)
 
-def delete4():
-    screen5.withdraw()
+    name = tk.Label(frame, text="Name:       ")
+    name.grid(column=0, row=0)
+    sex = tk.Label(frame, text="Sex:       ")
+    sex.grid(column=0, row=1)
+    DoB = tk.Label(frame, text="DoB:       ")
+    DoB.grid(column=0, row=2)
+
+    settings = tk.Button(text=u"\u2699", height=2, width=4)
+    settings.place(x=260, y=15)
+
+    Appointments = tk.Label(screen6, text="Appointments", height=10, width=40, relief="solid")
+    Appointments.place(x=7, y=80)
+
+    CurPre = tk.Label(screen6, text="Current Prescriptions", height=10, width=18, relief="solid")
+    CurPre.place(x=7, y=240)
+
+    CurPat = tk.Label(screen6, text="Current Patients", height=10, width=18, relief="solid")
+    CurPat.place(x=160, y=240)
+
+    PatMedDat = tk.Label(screen6, text="Patient Medical Records", height=8, width=40, relief="solid")
+    PatMedDat.place(x=7, y=400)
 
 def login_success():
     global screen3
     screen3 = Toplevel(screen)
-    screen3.title("Success")
-    screen3.geometry("150x100")
-    Label(screen3, text = "Login Success").pack()
-    Button(screen3, text="OK", command=delete2).pack()
+    Button(screen3, text="OK", command=screen3.withdraw()).pack()
+    screen3.withdraw()
+    screen3.withdraw()
+    screen2.withdraw()
+    screen.withdraw()
+
+    patientpage()
 
 def password_not_found():
     global screen4
@@ -27,7 +55,7 @@ def password_not_found():
     screen4.title("Success")
     screen4.geometry("150x100")
     Label(screen4, text="Password not found").pack()
-    Button(screen4, text="OK", command=delete3).pack()
+    Button(screen4, text="OK", command=screen4.withdraw()).pack()
 
 def user_not_found():
     global screen5
@@ -35,14 +63,14 @@ def user_not_found():
     screen5.title("User not found")
     screen5.geometry("150x100")
     Label(screen5, text="User not found").pack()
-    Button(screen5, text="OK", command=delete3).pack()
+    Button(screen5, text="OK", command=screen4.withdraw()).pack()
+    screen5.withdraw()
 
 def register_user():
 
     print("Working.....")
     username_info = username.get()
     password_info = password.get()
-
 
     file = open("info.csv", "a")
     file.write(username_info+"\n")
@@ -52,14 +80,13 @@ def register_user():
     username_entry.delete(0, END)
     password_entry.delete(0, END)
 
-    Label(screen1, text="Registeration was a success", fg="gold2", font=("Arial", 11)).pack()
+    Label(screen1, text="Registeration was a success", fg="White", font=("Arial", 11)).pack()
 
 def register():
     global screen1
     screen1 = Toplevel(screen)
     screen1.title("Register")
     screen1.geometry("300x250")
-    screen1.config(bg="black")
 
     global username
     global password
@@ -98,7 +125,6 @@ def login():
     global screen2
     screen2 = Toplevel(screen)
     screen2.title("Login")
-    screen2.config(bg="black")
     screen2.geometry("300x250")
     Label(screen2, text="Please enter details below").pack()
     Label(screen2, text = "").pack()
@@ -127,7 +153,6 @@ def login():
 def main():
     global screen
     screen = Tk()
-    screen.config(bg="black")
     screen.geometry("300x250")
     screen.title("Log in and register page")
     Label(text="MediApp", bg="grey", width="300", height=2, font=("Arials", 13)).pack()
