@@ -1,7 +1,7 @@
 import tkinter as tk
 import pandas as pd
-
 import csv
+
 window = tk.Tk()
 window.config(bg="black")
 window.title("MediApp")
