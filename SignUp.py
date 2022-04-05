@@ -8,6 +8,7 @@ MainPage = Tk()
 MainPage.config(bg="grey38")
 MainPage.geometry("300x300")
 MainPage.title("Log in and register page")
+MainPage.resizable(False, False)
 
 patientWindow = Toplevel(MainPage)
 patientWindow.title("patient profile")
@@ -207,6 +208,7 @@ def user_not_found():
     Label(UserNotFoundPage, text="User not found").pack()
     Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw).pack()
     UserNotFoundPage.withdraw()
+
 
 
 mainloop()
