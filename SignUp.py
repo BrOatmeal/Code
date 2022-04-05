@@ -37,6 +37,7 @@ LoginPage.geometry("300x250")
 LoginPage.withdraw()
 
 LoginSuccessPage = Toplevel(MainPage)
+LoginSuccessPage.withdraw()
 
 # -------Main Page-------
 
