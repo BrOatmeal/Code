@@ -1,8 +1,11 @@
 from tkinter import *
+import csv
+import os
+import pandas as pd
 
 
 def patientpage():
-
+    global screen6
     screen6 = Toplevel(screen)
     screen6.title("patient profile")
     screen6.geometry("300x500")
@@ -37,7 +40,7 @@ def patientpage():
 
 
 def login_success():
-
+    global screen3
     screen3 = Toplevel(screen)
     Button(screen3, text="OK", command=screen3.withdraw()).pack()
     screen3.withdraw()
@@ -49,7 +52,7 @@ def login_success():
 
 
 def password_not_found():
-
+    global screen4
     screen4 = Toplevel(screen)
     screen4.title("Success")
     screen4.geometry("150x100")
@@ -58,8 +61,7 @@ def password_not_found():
 
 
 def user_not_found():
-
-    global screen4
+    global screen5
     screen5 = Toplevel(screen)
     screen5.title("User not found")
     screen5.geometry("150x100")
@@ -157,7 +159,7 @@ def main():
     global screen
     screen = Tk()
     screen.config(bg="grey38")
-    screen.geometry("500x400")
+    screen.geometry("300x300")
     screen.title("Log in and register page")
 
     logo_frame = Frame(screen).pack()
@@ -166,14 +168,15 @@ def main():
 
     labels_frame = Frame(screen)
     labels_frame.pack()
+    labels_frame.config(bg="grey38")
 
-    mediapp = Label(labels_frame, text="MediApp", bg="grey", font=("Arials", 13))
+    mediapp = Label(labels_frame, text="MediApp", font=("Arials", 13),width=30,bg="grey38")
     mediapp.grid(row=0, column=0)
 
-    loginbutton = Button(labels_frame, text="Login", command=login)
+    loginbutton = Button(labels_frame, text="Login", command=login,width=30)
     loginbutton.grid(row=1, column=0)
 
-    registerbutton = Button(labels_frame, text="Register", command=register)
+    registerbutton = Button(labels_frame, text="Register", command=register,width=30)
     registerbutton.grid(row=2, column=0)
 
     screen.mainloop()
