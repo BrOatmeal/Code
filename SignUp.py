@@ -3,6 +3,7 @@
 
 from tkinter import *
 
+
 # ------Windows--------
 
 MainPage = Tk()
@@ -58,6 +59,18 @@ mediapp.grid(row=0, column=0)
 def login():
     Label(LoginPage, text="Please enter details below").pack()
     Label(LoginPage, text="").pack()
+    Label(LoginPage, text="Username * ").pack()
+    username_entry1 = Entry(LoginPage, textvariable=username_verify)
+    username_entry1.pack()
+
+    Label(LoginPage, text="").pack()
+    Label(LoginPage, text="Password * ").pack()
+    password_entry1 = Entry(LoginPage, textvariable=password_verify)
+    password_entry1.config(show='*')
+    password_entry1.pack()
+
+    Label(LoginPage, text="").pack()
+    Button(LoginPage, text="Login", width=10, height=1, command=login_verify).pack()
 
 
 loginbutton = Button(labels_frame, text="Login", command=login, width=30)
@@ -66,6 +79,9 @@ loginbutton.grid(row=1, column=0)
 # ------RegisterButton------
 def register_user():
     print("Working.....")
+    registerPage.deiconify()
+    MainPage.withdraw()
+
     username_info = username.get()
     password_info = password.get()
 
@@ -78,6 +94,7 @@ def register_user():
     password_entry.delete(0, END)
 
     Label(registerPage, text="Registeration was a success", fg="White", font=("Arial", 11)).pack()
+
 
 registerbutton = Button(labels_frame, text="Register", command=register_user, width=30)
 registerbutton.grid(row=2, column=0)
@@ -125,16 +142,6 @@ def login_verify():
 
 # ----------Labels---------------
 
-Label(LoginPage, text="Username * ").pack()
-username_entry1 = Entry(LoginPage, textvariable=username_verify)
-username_entry1.pack()
-Label(LoginPage, text="").pack()
-Label(LoginPage, text="Password * ").pack()
-password_entry1 = Entry(LoginPage, textvariable=password_verify)
-password_entry1.config(show='*')
-password_entry1.pack()
-Label(LoginPage, text="").pack()
-Button(LoginPage, text="Login", width=10, height=1, command=login_verify).pack()
 
 
 def patientpage():
