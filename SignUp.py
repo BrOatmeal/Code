@@ -10,25 +10,31 @@ MainPage.config(bg="grey38")
 MainPage.geometry("300x300")
 MainPage.title("Log in and register page")
 
+
 patientWindow = Toplevel(MainPage)
 patientWindow.title("patient profile")
 patientWindow.geometry("300x500")
+patientWindow.withdraw()
 
 UserNotFoundPage = Toplevel(MainPage)
 UserNotFoundPage.title("User not found")
 UserNotFoundPage.geometry("150x100")
+UserNotFoundPage.withdraw()
 
 passwordNotFoundPage = Toplevel(MainPage)
 passwordNotFoundPage.title("Success")
 passwordNotFoundPage.geometry("150x100")
+passwordNotFoundPage.withdraw()
 
 registerPage = Toplevel(MainPage)
 registerPage.title("Register")
 registerPage.geometry("300x250")
+registerPage.withdraw()
 
 LoginPage = Toplevel(MainPage)
 LoginPage.title("Login")
 LoginPage.geometry("300x250")
+LoginPage.withdraw()
 
 LoginSuccessPage = Toplevel(MainPage)
 
@@ -57,9 +63,25 @@ loginbutton = Button(labels_frame, text="Login", command=login, width=30)
 loginbutton.grid(row=1, column=0)
 
 # ------RegisterButton------
+def register_user():
+    print("Working.....")
+    username_info = username.get()
+    password_info = password.get()
 
-registerbutton = Button(labels_frame, text="Register", command=registerPage, width=30)
+    file = open("info.csv", "a")
+    file.write(username_info + "\n")
+    file.write(password_info + "\n" + "\n")
+    file.close()
+
+    username_entry.delete(0, END)
+    password_entry.delete(0, END)
+
+    Label(registerPage, text="Registeration was a success", fg="White", font=("Arial", 11)).pack()
+
+registerbutton = Button(labels_frame, text="Register", command=register_user, width=30)
 registerbutton.grid(row=2, column=0)
+
+
 
 # ------UsernameVerify------
 
@@ -152,20 +174,6 @@ def patientpage():
     PatMedDat.place(x=7, y=400)
 
 
-def register_user():
-    print("Working.....")
-    username_info = username.get()
-    password_info = password.get()
-
-    file = open("info.csv", "a")
-    file.write(username_info + "\n")
-    file.write(password_info + "\n" + "\n")
-    file.close()
-
-    username_entry.delete(0, END)
-    password_entry.delete(0, END)
-
-    Label(registerPage, text="Registeration was a success", fg="White", font=("Arial", 11)).pack()
 
 
 username = StringVar()
@@ -195,5 +203,7 @@ def user_not_found():
     Label(UserNotFoundPage, text="User not found").pack()
     Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw()).pack()
     UserNotFoundPage.withdraw()
+
+
 
 mainloop()
