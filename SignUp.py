@@ -1,8 +1,6 @@
-
 # ------Imports--------
 
 from tkinter import *
-
 
 # ------Windows--------
 
@@ -10,7 +8,6 @@ MainPage = Tk()
 MainPage.config(bg="grey38")
 MainPage.geometry("300x300")
 MainPage.title("Log in and register page")
-
 
 patientWindow = Toplevel(MainPage)
 patientWindow.title("patient profile")
@@ -77,6 +74,7 @@ def login():
 loginbutton = Button(labels_frame, text="Login", command=login, width=30)
 loginbutton.grid(row=1, column=0)
 
+
 # ------RegisterButton------
 def register_user():
     username_info = username.get()
@@ -92,14 +90,14 @@ def register_user():
 
     Label(registerPage, text="Registeration was a success", fg="Black", font=("Arial", 11)).pack()
 
+
 def show_register_page():
     registerPage.deiconify()
     MainPage.withdraw()
 
+
 registerbutton = Button(labels_frame, text="Register", command=show_register_page, width=30)
 registerbutton.grid(row=2, column=0)
-
-
 
 # ------UsernameVerify------
 
@@ -122,7 +120,6 @@ def login_success():
     LoginPage.withdraw()
     MainPage.withdraw()
     patientpage()
-
 
 
 # --------LoginSuccess---------
@@ -183,8 +180,6 @@ def patientpage():
     PatMedDat.place(x=7, y=400)
 
 
-
-
 username = StringVar()
 password = StringVar()
 
@@ -212,7 +207,6 @@ def user_not_found():
     Label(UserNotFoundPage, text="User not found").pack()
     Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw).pack()
     UserNotFoundPage.withdraw()
-
 
 
 mainloop()
