@@ -1,11 +1,8 @@
 from tkinter import *
-import csv
-import os
-import pandas as pd
 
 
 def patientpage():
-    global screen6
+
     screen6 = Toplevel(screen)
     screen6.title("patient profile")
     screen6.geometry("300x500")
@@ -40,7 +37,7 @@ def patientpage():
 
 
 def login_success():
-    global screen3
+
     screen3 = Toplevel(screen)
     Button(screen3, text="OK", command=screen3.withdraw()).pack()
     screen3.withdraw()
@@ -52,7 +49,7 @@ def login_success():
 
 
 def password_not_found():
-    global screen4
+
     screen4 = Toplevel(screen)
     screen4.title("Success")
     screen4.geometry("150x100")
@@ -61,7 +58,8 @@ def password_not_found():
 
 
 def user_not_found():
-    global screen5
+
+    global screen4
     screen5 = Toplevel(screen)
     screen5.title("User not found")
     screen5.geometry("150x100")
