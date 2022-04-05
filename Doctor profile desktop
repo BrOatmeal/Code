@@ -34,6 +34,9 @@ CurPat.place(x=700, y=125)
 PatMedDat = tk.Label(window, text="Patient Medical Records", height=15, width=55, relief="solid", bg="gold2")
 PatMedDat.place(x=489, y=300)
 
-
+logo_frame = tk.Frame(window).pack()
+logo = tk.PhotoImage(file="MicrosoftTeams-image-smolish.png")
+logo_label = tk.Label(logo_frame, image=logo)
+logo_label.place(x=200, y=10)
 
 window.mainloop()
