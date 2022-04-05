@@ -79,10 +79,6 @@ loginbutton.grid(row=1, column=0)
 
 # ------RegisterButton------
 def register_user():
-    print("Working.....")
-    registerPage.deiconify()
-    MainPage.withdraw()
-
     username_info = username.get()
     password_info = password.get()
 
@@ -94,10 +90,13 @@ def register_user():
     username_entry.delete(0, END)
     password_entry.delete(0, END)
 
-    Label(registerPage, text="Registeration was a success", fg="White", font=("Arial", 11)).pack()
+    Label(registerPage, text="Registeration was a success", fg="Black", font=("Arial", 11)).pack()
 
+def show_register_page():
+    registerPage.deiconify()
+    MainPage.withdraw()
 
-registerbutton = Button(labels_frame, text="Register", command=register_user, width=30)
+registerbutton = Button(labels_frame, text="Register", command=show_register_page, width=30)
 registerbutton.grid(row=2, column=0)
 
 
@@ -206,12 +205,12 @@ Button(registerPage, text="Register", width=10, height=1, command=register_user)
 
 def password_not_found():
     Label(passwordNotFoundPage, text="Password not found").pack()
-    Button(passwordNotFoundPage, text="OK", command=passwordNotFoundPage.withdraw()).pack()
+    Button(passwordNotFoundPage, text="OK", command=passwordNotFoundPage.withdraw).pack()
 
 
 def user_not_found():
     Label(UserNotFoundPage, text="User not found").pack()
-    Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw()).pack()
+    Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw).pack()
     UserNotFoundPage.withdraw()
 
 
