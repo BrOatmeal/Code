@@ -1,0 +1,48 @@
+from tkinter import *
+import pandas as pd
+import csv
+
+window = Tk()
+window.config(bg="grey38")
+window.title("MediApp")
+window.geometry("900x700")
+window.resizable(False, False)
+
+def PatientView():
+
+    frame = Frame(window, height=200, width=400, highlightbackground="gold2", highlightthickness=2, bg="gold2", relief="solid")
+    frame.place(x=50, y=300)
+
+    profilePic = Label(window, height=6, width=15, bg="blue")
+    profilePic.place(x=15, y=10)
+
+    name = Label(frame, text="Name:       ", bg="gold2")
+    name.grid(column=0, row=0)
+    sex = Label(frame, text="Sex:       ", bg="gold2")
+    sex.grid(column=0, row=1)
+    DoB = Label(frame, text="DoB:       ", bg="gold2")
+    DoB.grid(column=0, row=3)
+
+    settings = Button(text=u"\u2699", height=2, width=4)
+    settings.place(x=145, y=10)
+
+    appointments = Label(window, text="Appointments", height=10, width=60, relief="solid", bg="gold2")
+    appointments.place(x=50, y=125)
+
+    meddat = Label(window, text="Current Medical Data", height=10, width=25, relief="solid", bg="gold2")
+    meddat.place(x=700, y=125)
+
+    curmed = Label(window, text="Current Medication", height=10, width=25, relief="solid", bg="gold2")
+    curmed.place(x=490, y=125)
+
+    envdat = Label(window, text="Environmental Data", height=15, width=55, relief="solid", bg="gold2")
+    envdat.place(x=489, y=300)
+
+    logo_frame = Frame(window).pack()
+    logo = PhotoImage(file="MicrosoftTeams-image-smolish.png")
+    logo_label = Label(logo_frame, image=logo)
+    logo_label.place(x=200, y=10)
+
+PatientView()
+
+window.mainloop()
