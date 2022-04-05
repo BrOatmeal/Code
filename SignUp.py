@@ -57,6 +57,7 @@ mediapp.grid(row=0, column=0)
 # ------loginPage-------
 
 def login():
+    LoginPage.deiconify()
     Label(LoginPage, text="Please enter details below").pack()
     Label(LoginPage, text="").pack()
     Label(LoginPage, text="Username * ").pack()
@@ -124,13 +125,15 @@ def login_success():
     patientpage()
 
 
+
 # --------LoginSuccess---------
 
 def login_verify():
     username1 = username_verify.get()
     password1 = password_verify.get()
-    username_entry1.delete(0, END)
-    password_entry1.delete(0, END)
+
+    username_entry.delete(0, END)
+    password_entry.delete(0, END)
 
     file = open("info.csv", "r")
     verify = file.read().splitlines()
@@ -142,10 +145,9 @@ def login_verify():
 
 # ----------Labels---------------
 
-
-
 def patientpage():
     # -------features-------------
+    patientWindow.deiconify()
 
     frame = Frame(patientWindow, height=66, width=200, highlightbackground="black", highlightthickness=2)
     frame.place(x=80, y=10)
