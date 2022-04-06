@@ -12,7 +12,8 @@ MainPage.resizable(False, False)
 
 patientWindow = Toplevel(MainPage)
 patientWindow.title("patient profile")
-patientWindow.geometry("300x500")
+patientWindow.geometry("300x550")
+patientWindow.config(bg="grey38")
 patientWindow.withdraw()
 
 UserNotFoundPage = Toplevel(MainPage)
@@ -71,6 +72,12 @@ def login():
     password_entry1 = Entry(LoginPage, textvariable=password_verify)
     password_entry1.config(show='*')
     password_entry1.pack()
+
+    docbtn = Checkbutton(LoginPage, text="Doctor", onvalue = 1, offvalue = 0)
+    docbtn.pack()
+
+    patbtn = Checkbutton(LoginPage, text="Patient", onvalue = 1, offvalue = 0)
+    patbtn.pack()
 
     Label(LoginPage, text="").pack()
     Button(LoginPage, text="Login", width=10, height=1, command=login_verify).pack()
@@ -144,45 +151,49 @@ def login_verify():
         user_not_found()
 
 
-# ----------Labels---------------
+
+
+
 
 def patientpage():
     # -------features-------------
     patientWindow.deiconify()
 
-    frame = Frame(patientWindow, height=66, width=200, highlightbackground="black", highlightthickness=2)
+
+    frame = Frame(patientWindow, height=66, width=200, highlightbackground="gold2", highlightthickness=2, bg="gold2",
+                  relief="solid")
     frame.place(x=80, y=10)
 
-    profilePic = Label(patientWindow, height=4, width=8, bg="green")
+    profilePic = Label(patientWindow, height=4, width=8, bg="blue")
     profilePic.place(x=7, y=10)
 
-    # -------PersonsAttributes-----
-
-    name = Label(frame, text="Name:       ")
+    name = Label(frame, text="Name:   ", bg="gold2")
     name.grid(column=0, row=0)
-    sex = Label(frame, text="Sex:       ")
+    sex = Label(frame, text="Sex:   ", bg="gold2")
     sex.grid(column=0, row=1)
-    DoB = Label(frame, text="DoB:       ")
+    DoB = Label(frame, text="DoB:   ", bg="gold2")
     DoB.grid(column=0, row=2)
 
-    # --------settingsIcon---------
-
-    settings = Button(text=u"\u2699", height=2, width=4)
+    settings = Button(text=u"\u2699", height=2, width=4, bg="grey48")
     settings.place(x=260, y=15)
 
-    # --------Options--------------
+    appointments = Label(patientWindow, text="Appointments", height=10, width=40, relief="solid", bg="gold2")
+    appointments.place(x=7, y=80)
 
-    Appointments = Label(patientWindow, text="Appointments", height=10, width=40, relief="solid")
-    Appointments.place(x=7, y=80)
+    meddat = Label(patientWindow, text="Current Medical Data", height=10, width=18, relief="solid", bg="gold2")
+    meddat.place(x=7, y=240)
 
-    CurPre = Label(patientWindow, text="Current Prescriptions", height=10, width=18, relief="solid")
-    CurPre.place(x=7, y=240)
+    curmed = Label(patientWindow, text="Current Medication", height=10, width=18, relief="solid", bg="gold2")
+    curmed.place(x=160, y=240)
 
-    CurPat = Label(patientWindow, text="Current Patients", height=10, width=18, relief="solid")
-    CurPat.place(x=160, y=240)
+    envdat = Label(patientWindow, text="Environmental Data", height=8, width=40, relief="solid", bg="gold2")
+    envdat.place(x=7, y=400)
 
-    PatMedDat = Label(patientWindow, text="Patient Medical Records", height=8, width=40, relief="solid")
-    PatMedDat.place(x=7, y=400)
+def placepic():
+
+    logo = PhotoImage(file="MicrosoftTeams-image-smolish.png")
+    logo_label = Label(logo_frame, image=logo)
+    logo_label.place(x=150, y=10)
 
 
 username = StringVar()
@@ -201,7 +212,6 @@ password_entry.config(show='*')
 password_entry.pack()
 Label(registerPage, text="").pack()
 Button(registerPage, text="Register", width=10, height=1, command=register_user).pack()
-
 
 def password_not_found():
     Label(passwordNotFoundPage, text="Password not found").pack()

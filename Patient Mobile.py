@@ -4,6 +4,7 @@ window = Tk()
 window.config(bg="grey38")
 window.title("MediApp")
 window.geometry("300x550")
+
 window.resizable(False, False)
 
 frame = Frame(window, height=66, width=200, highlightbackground="gold2", highlightthickness=2, bg="gold2",
