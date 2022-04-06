@@ -91,10 +91,10 @@ password_entry1 = Entry(LoginPage)
 password_entry1.config(show='*')
 password_entry1.pack()
 
-docbtn = Checkbutton(LoginPage, text="Doctor", onvalue = 1, offvalue = 0,fg="white",bg="grey38")
+docbtn = Checkbutton(LoginPage, text="Doctor", onvalue = 1, offvalue = 0,bg="grey38")
 docbtn.pack()
 
-patbtn = Checkbutton(LoginPage, text="Patient", onvalue = 1, offvalue = 0,fg="white",bg="grey38")
+patbtn = Checkbutton(LoginPage, text="Patient", onvalue = 1, offvalue = 0,bg="grey38")
 patbtn.pack()
 
 Label(LoginPage, text="",bg="grey38").pack()
