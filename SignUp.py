@@ -56,6 +56,9 @@ newlogo_frame=Frame(patientWindow).pack()
 logonew=PhotoImage(file="MicrosoftTeams-image-smolish.png")
 newlogo_label=Label(patientWindow,image=logonew)
 newlogo_label.place(x=150,y=10)
+
+settings = Button(patientWindow, text=u"\u2699", height=2, width=4, bg="grey48")
+settings.place(x=260, y=15)
 # ------loginPage-------
 
 def login():
@@ -102,7 +105,6 @@ def register_user():
 
     Label(registerPage, text="Registeration was a success", fg="Black", font=("Arial", 11)).pack()
 
-
 def show_register_page():
     registerPage.deiconify()
     MainPage.withdraw()
@@ -116,12 +118,10 @@ registerbutton.grid(row=2, column=0)
 username_verify = StringVar()
 password_verify = StringVar()
 
-
 # ------hideLoginSuccessPage-----
 
 def hideloginsuccess():
     LoginSuccessPage.withdraw()
-
 
 # --------LoginSuccessPage-------
 
@@ -188,12 +188,6 @@ def patientpage():
 
     envdat = Label(patientWindow, text="Environmental Data", height=8, width=40, relief="solid", bg="gold2")
     envdat.place(x=7, y=400)
-
-def placepic():
-
-    logo = PhotoImage(file="MicrosoftTeams-image-smolish.png")
-    logo_label = Label(logo_frame, image=logo)
-    logo_label.place(x=150, y=10)
 
 
 username = StringVar()
