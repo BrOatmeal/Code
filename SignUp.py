@@ -1,6 +1,7 @@
 # ------Imports--------
 
 from tkinter import *
+from tkinter import messagebox
 
 # ------Windows--------
 
@@ -52,6 +53,8 @@ labels_frame.config(bg="grey38")
 mediapp = Label(labels_frame, text="MediApp", font=("Arial", 13), width=30, bg="grey38")
 mediapp.grid(row=0, column=0)
 
+#------photo logo------
+
 newlogo_frame=Frame(patientWindow).pack()
 logonew=PhotoImage(file="MicrosoftTeams-image-smolish.png")
 newlogo_label=Label(patientWindow,image=logonew)
@@ -59,31 +62,47 @@ newlogo_label.place(x=150,y=10)
 
 settings = Button(patientWindow, text=u"\u2699", height=2, width=4, bg="grey48")
 settings.place(x=260, y=15)
+
+def login_verify():
+    username1 = username_entry1.get()
+    password1 = password_entry1.get()
+
+    username_entry1.delete(0, END)
+    password_entry1.delete(0, END)
+
+    file = open("info.csv", "r")
+    verify = file.read().splitlines()
+    if username1 and password1 in verify:
+        login_success()
+    if username1 and password1 not in verify:
+        user_not_found()
+
+Label(LoginPage, text="Please enter details below").pack()
+Label(LoginPage, text="").pack()
+Label(LoginPage, text="Username * ").pack()
+username_entry1 = Entry(LoginPage)
+username_entry1.pack()
+
+Label(LoginPage, text="").pack()
+Label(LoginPage, text="Password * ").pack()
+password_entry1 = Entry(LoginPage)
+password_entry1.config(show='*')
+password_entry1.pack()
+
+docbtn = Checkbutton(LoginPage, text="Doctor", onvalue = 1, offvalue = 0)
+docbtn.pack()
+
+patbtn = Checkbutton(LoginPage, text="Patient", onvalue = 1, offvalue = 0)
+patbtn.pack()
+
+Label(LoginPage, text="").pack()
+Button(LoginPage, text="Login", width=10, height=1, command=login_verify).pack()
+
 # ------loginPage-------
 
 def login():
     MainPage.withdraw()
     LoginPage.deiconify()
-    Label(LoginPage, text="Please enter details below").pack()
-    Label(LoginPage, text="").pack()
-    Label(LoginPage, text="Username * ").pack()
-    username_entry1 = Entry(LoginPage, textvariable=username_verify)
-    username_entry1.pack()
-
-    Label(LoginPage, text="").pack()
-    Label(LoginPage, text="Password * ").pack()
-    password_entry1 = Entry(LoginPage, textvariable=password_verify)
-    password_entry1.config(show='*')
-    password_entry1.pack()
-
-    docbtn = Checkbutton(LoginPage, text="Doctor", onvalue = 1, offvalue = 0)
-    docbtn.pack()
-
-    patbtn = Checkbutton(LoginPage, text="Patient", onvalue = 1, offvalue = 0)
-    patbtn.pack()
-
-    Label(LoginPage, text="").pack()
-    Button(LoginPage, text="Login", width=10, height=1, command=login_verify).pack()
 
 
 loginbutton = Button(labels_frame, text="Login", command=login, width=30)
@@ -128,29 +147,19 @@ def hideloginsuccess():
 def login_success():
     Button(LoginSuccessPage, text="OK", command=hideloginsuccess).pack()
     LoginSuccessPage.withdraw()
-    LoginSuccessPage.withdraw()
     LoginPage.withdraw()
     MainPage.withdraw()
     patientpage()
 
+#--------verification----------
+
+
+def user_not_found():
+    messagebox.showerror("Incorrect", "Incorrect username/Password")
+    Label(UserNotFoundPage, text="User not found").pack()
+    Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw).pack()
 
 # --------LoginSuccess---------
-
-def login_verify():
-    username1 = username_verify.get()
-    password1 = password_verify.get()
-
-    username_entry.delete(0, END)
-    password_entry.delete(0, END)
-
-    file = open("info.csv", "r")
-    verify = file.read().splitlines()
-    if username1 and password1 in verify:
-        login_success()
-    if username1 and password1 not in verify:
-        user_not_found()
-
-
 
 
 
@@ -207,15 +216,6 @@ password_entry.pack()
 Label(registerPage, text="").pack()
 Button(registerPage, text="Register", width=10, height=1, command=register_user).pack()
 
-def password_not_found():
-    Label(passwordNotFoundPage, text="Password not found").pack()
-    Button(passwordNotFoundPage, text="OK", command=passwordNotFoundPage.withdraw).pack()
-
-
-def user_not_found():
-    Label(UserNotFoundPage, text="User not found").pack()
-    Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw).pack()
-    UserNotFoundPage.withdraw()
 
 
 
