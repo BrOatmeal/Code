@@ -2,6 +2,10 @@
 
 from tkinter import *
 from tkinter import messagebox
+import pandas as pd
+#-------Pandas------------
+
+dataframe = pd.read_csv("info.csv")
 
 # ------Windows-----------
 
@@ -41,7 +45,6 @@ LoginPage.withdraw()
 
 LoginSuccessPage = Toplevel(MainPage)
 LoginSuccessPage.withdraw()
-
 # -------Main Page-------
 
 logo_frame = Frame(MainPage).pack()
@@ -53,7 +56,13 @@ labels_frame.pack()
 labels_frame.config(bg="grey38")
 
 mediapp = Label(labels_frame, text="MediApp", font=("Arial", 13), width=30, bg="grey38")
-mediapp.grid(row=0, column=0)
+mediapp.grid(row=0, column=0)#
+
+docint = IntVar()
+docint.set(0)
+patint = IntVar()
+patint.set(0)
+
 
 #------photo logo------
 
@@ -91,12 +100,6 @@ password_entry1 = Entry(LoginPage)
 password_entry1.config(show='*')
 password_entry1.pack()
 
-docbtn = Checkbutton(LoginPage, text="Doctor", onvalue = 1, offvalue = 0,bg="grey38")
-docbtn.pack()
-
-patbtn = Checkbutton(LoginPage, text="Patient", onvalue = 1, offvalue = 0,bg="grey38")
-patbtn.pack()
-
 Label(LoginPage, text="",bg="grey38").pack()
 Button(LoginPage, text="Login", width=10, height=1, command=login_verify).pack()
 
@@ -116,10 +119,18 @@ def register_user():
     username_info = username.get()
     password_info = password.get()
 
-    file = open("info.csv", "a")
-    file.write(username_info + "\n")
-    file.write(password_info + "\n" + "\n")
-    file.close()
+    if docint.get() == 1:
+        dataframe.loc[len(dataframe.index)] = [username_info, password_info, "Doctor"]
+        print(dataframe.to_string)
+    elif patint.get() == 1:
+        dataframe.loc[len(dataframe.index)] = [username_info, password_info, "Patient"]
+        print(dataframe.to_string)
+    else:
+        print(docint.get())
+        print(patint.get())
+        print("neither")
+
+    dataframe.to_csv("info.csv")
 
     username_entry.delete(0, END)
     password_entry.delete(0, END)
@@ -133,7 +144,6 @@ def show_register_page():
 
 registerbutton = Button(labels_frame, text="Register", command=show_register_page, width=30)
 registerbutton.grid(row=2, column=0)
-
 # ------UsernameVerify------
 
 username_verify = StringVar()
@@ -162,8 +172,6 @@ def user_not_found():
     Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw).pack()
 
 # --------LoginSuccess---------
-
-
 
 
 def patientpage():
@@ -215,6 +223,10 @@ Label(registerPage, text="Password * ").pack()
 password_entry = Entry(registerPage, textvariable=password)
 password_entry.config(show='*')
 password_entry.pack()
+docbtn = Checkbutton(registerPage, text="Doctor", onvalue=1, offvalue=0, bg="grey38", variable=docint)
+docbtn.pack()
+patbtn = Checkbutton(registerPage, text="Patient", onvalue=1, offvalue=0, bg="grey38", variable=patint)
+patbtn.pack()
 Label(registerPage, text="").pack()
 Button(registerPage, text="Register", width=10, height=1, command=register_user).pack()
 
