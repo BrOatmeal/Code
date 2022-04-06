@@ -3,7 +3,7 @@
 from tkinter import *
 from tkinter import messagebox
 
-# ------Windows--------
+# ------Windows-----------
 
 MainPage = Tk()
 MainPage.config(bg="grey38")
