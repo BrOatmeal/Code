@@ -51,10 +51,14 @@ labels_frame.config(bg="grey38")
 mediapp = Label(labels_frame, text="MediApp", font=("Arial", 13), width=30, bg="grey38")
 mediapp.grid(row=0, column=0)
 
-
+newlogo_frame=Frame(patientWindow).pack()
+logonew=PhotoImage(file="MicrosoftTeams-image-smolish.png")
+newlogo_label=Label(patientWindow,image=logonew)
+newlogo_label.place(x=150,y=10)
 # ------loginPage-------
 
 def login():
+    MainPage.withdraw()
     LoginPage.deiconify()
     Label(LoginPage, text="Please enter details below").pack()
     Label(LoginPage, text="").pack()
