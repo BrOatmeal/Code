@@ -30,11 +30,13 @@ passwordNotFoundPage.withdraw()
 registerPage = Toplevel(MainPage)
 registerPage.title("Register")
 registerPage.geometry("300x250")
+registerPage.config(bg="grey38")
 registerPage.withdraw()
 
 LoginPage = Toplevel(MainPage)
 LoginPage.title("Login")
 LoginPage.geometry("300x250")
+LoginPage.config(bg="grey38")
 LoginPage.withdraw()
 
 LoginSuccessPage = Toplevel(MainPage)
@@ -77,25 +79,25 @@ def login_verify():
     if username1 and password1 not in verify:
         user_not_found()
 
-Label(LoginPage, text="Please enter details below").pack()
-Label(LoginPage, text="").pack()
-Label(LoginPage, text="Username * ").pack()
+Label(LoginPage, text="Please enter details below",fg="white",bg="grey38").pack()
+Label(LoginPage, text="",bg="grey38").pack()
+Label(LoginPage, text="Username * ",fg="white",bg="grey38").pack()
 username_entry1 = Entry(LoginPage)
 username_entry1.pack()
 
-Label(LoginPage, text="").pack()
-Label(LoginPage, text="Password * ").pack()
+Label(LoginPage, text="",bg="grey38").pack()
+Label(LoginPage, text="Password * ",fg="white",bg="grey38").pack()
 password_entry1 = Entry(LoginPage)
 password_entry1.config(show='*')
 password_entry1.pack()
 
-docbtn = Checkbutton(LoginPage, text="Doctor", onvalue = 1, offvalue = 0)
+docbtn = Checkbutton(LoginPage, text="Doctor", onvalue = 1, offvalue = 0,fg="white",bg="grey38")
 docbtn.pack()
 
-patbtn = Checkbutton(LoginPage, text="Patient", onvalue = 1, offvalue = 0)
+patbtn = Checkbutton(LoginPage, text="Patient", onvalue = 1, offvalue = 0,fg="white",bg="grey38")
 patbtn.pack()
 
-Label(LoginPage, text="").pack()
+Label(LoginPage, text="",bg="grey38").pack()
 Button(LoginPage, text="Login", width=10, height=1, command=login_verify).pack()
 
 # ------loginPage-------
