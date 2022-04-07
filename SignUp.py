@@ -3,9 +3,11 @@
 from tkinter import *
 from tkinter import messagebox
 import pandas as pd
-#-------Pandas------------
+import unittest
 
-dataframe = pd.read_csv("info.csv")
+# -------Pandas------------
+
+dataframe = pd.read_csv("CSV_New.csv")
 
 # ------Windows-----------
 
@@ -56,23 +58,45 @@ labels_frame.pack()
 labels_frame.config(bg="grey38")
 
 mediapp = Label(labels_frame, text="MediApp", font=("Arial", 13), width=30, bg="grey38")
-mediapp.grid(row=0, column=0)#
+mediapp.grid(row=0, column=0)
 
 docint = IntVar()
 docint.set(0)
 patint = IntVar()
 patint.set(0)
 
+# ------photo logo------
 
-#------photo logo------
-
-newlogo_frame=Frame(patientWindow).pack()
-logonew=PhotoImage(file="MicrosoftTeams-image-smolish.png")
-newlogo_label=Label(patientWindow,image=logonew)
-newlogo_label.place(x=150,y=10)
+newlogo_frame = Frame(patientWindow).pack()
+logonew = PhotoImage(file="MicrosoftTeams-image-smolish.png")
+newlogo_label = Label(patientWindow, image=logonew)
+newlogo_label.place(x=150, y=10)
 
 settings = Button(patientWindow, text=u"\u2699", height=2, width=4, bg="grey48")
 settings.place(x=260, y=15)
+
+
+# --------unittest----
+def test_file1_method():
+    x = 5
+    y = 6
+    assert x + 1 == y, "test failed"
+
+
+print(test_file1_method)
+def add(x, y):
+    return x + y
+
+class Test(unittest.TestCase):
+    def addition(self):
+        self.assertEquals(add(4, 5), 9)
+    if __name__ == "__main":
+        unittest.main()
+
+print(unittest)
+
+
+
 
 def login_verify():
     username1 = username_entry1.get()
@@ -81,29 +105,32 @@ def login_verify():
     username_entry1.delete(0, END)
     password_entry1.delete(0, END)
 
-    file = open("info.csv", "r")
-    verify = file.read().splitlines()
+    file = open("CSV_New.csv", "r")
+    verify = dataframe.iloc[0, 1]
     if username1 and password1 in verify:
         login_success()
-    if username1 and password1 not in verify:
+    elif username1 or password1 not in verify:
         user_not_found()
 
-Label(LoginPage, text="Please enter details below",fg="white",bg="grey38").pack()
-Label(LoginPage, text="",bg="grey38").pack()
-Label(LoginPage, text="Username * ",fg="white",bg="grey38").pack()
+
+Label(LoginPage, text="Please enter details below", fg="white", bg="grey38").pack()
+Label(LoginPage, text="", bg="grey38").pack()
+Label(LoginPage, text="Username * ", fg="white", bg="grey38").pack()
 username_entry1 = Entry(LoginPage)
 username_entry1.pack()
 
-Label(LoginPage, text="",bg="grey38").pack()
-Label(LoginPage, text="Password * ",fg="white",bg="grey38").pack()
+Label(LoginPage, text="", bg="grey38").pack()
+Label(LoginPage, text="Password * ", fg="white", bg="grey38").pack()
 password_entry1 = Entry(LoginPage)
 password_entry1.config(show='*')
 password_entry1.pack()
 
-Label(LoginPage, text="",bg="grey38").pack()
+Label(LoginPage, text="", bg="grey38").pack()
 Button(LoginPage, text="Login", width=10, height=1, command=login_verify).pack()
 
+
 # ------loginPage-------
+
 
 def login():
     MainPage.withdraw()
@@ -130,12 +157,13 @@ def register_user():
         print(patint.get())
         print("neither")
 
-    dataframe.to_csv("info.csv")
+    dataframe.to_csv("CSV_New.csv", index=False)
 
     username_entry.delete(0, END)
     password_entry.delete(0, END)
 
-    Label(registerPage, text="Registeration was a success", fg="Black", font=("Arial", 11)).pack()
+    Label(registerPage, text="Registration was a success", fg="Black", font=("Arial", 11)).pack()
+
 
 def show_register_page():
     registerPage.deiconify()
@@ -149,12 +177,16 @@ registerbutton.grid(row=2, column=0)
 username_verify = StringVar()
 password_verify = StringVar()
 
+
 # ------hideLoginSuccessPage-----
+
 
 def hideloginsuccess():
     LoginSuccessPage.withdraw()
 
+
 # --------LoginSuccessPage-------
+
 
 def login_success():
     Button(LoginSuccessPage, text="OK", command=hideloginsuccess).pack()
@@ -163,7 +195,8 @@ def login_success():
     MainPage.withdraw()
     patientpage()
 
-#--------verification----------
+
+# --------verification----------
 
 
 def user_not_found():
@@ -171,13 +204,13 @@ def user_not_found():
     Label(UserNotFoundPage, text="User not found").pack()
     Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw).pack()
 
+
 # --------LoginSuccess---------
 
 
 def patientpage():
     # -------features-------------
     patientWindow.deiconify()
-
 
     frame = Frame(patientWindow, height=66, width=200, highlightbackground="gold2", highlightthickness=2, bg="gold2",
                   relief="solid")
@@ -229,8 +262,5 @@ patbtn = Checkbutton(registerPage, text="Patient", onvalue=1, offvalue=0, bg="gr
 patbtn.pack()
 Label(registerPage, text="").pack()
 Button(registerPage, text="Register", width=10, height=1, command=register_user).pack()
-
-
-
 
 mainloop()
