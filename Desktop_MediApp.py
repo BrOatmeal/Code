@@ -44,7 +44,7 @@ LoginSuccessPage.withdraw()
 # -------Main Page-------
 
 logo_frame = Frame(MainPage).pack()
-logo = PhotoImage(file="MicrosoftTeams-image-200.png")
+logo = PhotoImage(file="MicrosoftTeams-image-smolish.png")
 logo_label = Label(logo_frame, image=logo).pack()
 
 labels_frame = Frame(MainPage)
@@ -54,15 +54,16 @@ labels_frame.config(bg="grey38")
 mediapp = Label(labels_frame, text="MediApp", font=("Arial", 13), width=30, bg="grey38")
 mediapp.grid(row=0, column=0)
 
-#------photo logo------
+# ------photo logo------
 
-newlogo_frame=Frame(patientWindow).pack()
-logonew=PhotoImage(file="MicrosoftTeams-image-smolish.png")
-newlogo_label=Label(patientWindow,image=logonew)
-newlogo_label.grid(row=1,column=3)
+#newlogo_frame = Frame(patientWindow).pack()
+#logonew = PhotoImage(file="MicrosoftTeams-image-smolish.png")
+#newlogo_label = Label(patientWindow, image=logonew)
+#newlogo_label.place(x=0, y=0)
 
 settings = Button(patientWindow, text=u"\u2699", height=2, width=4, bg="grey48")
 settings.place(x=260, y=15)
+
 
 def login_verify():
     username1 = username_entry1.get()
@@ -78,6 +79,7 @@ def login_verify():
     if username1 and password1 not in verify:
         user_not_found()
 
+
 Label(LoginPage, text="Please enter details below").pack()
 Label(LoginPage, text="").pack()
 Label(LoginPage, text="Username * ").pack()
@@ -90,14 +92,15 @@ password_entry1 = Entry(LoginPage)
 password_entry1.config(show='*')
 password_entry1.pack()
 
-docbtn = Checkbutton(LoginPage, text="Doctor", onvalue = 1, offvalue = 0)
+docbtn = Checkbutton(LoginPage, text="Doctor", onvalue=1, offvalue=0)
 docbtn.pack()
 
-patbtn = Checkbutton(LoginPage, text="Patient", onvalue = 1, offvalue = 0)
+patbtn = Checkbutton(LoginPage, text="Patient", onvalue=1, offvalue=0)
 patbtn.pack()
 
 Label(LoginPage, text="").pack()
 Button(LoginPage, text="Login", width=10, height=1, command=login_verify).pack()
+
 
 # ------loginPage-------
 
@@ -125,6 +128,7 @@ def register_user():
 
     Label(registerPage, text="Registeration was a success", fg="Black", font=("Arial", 11)).pack()
 
+
 def show_register_page():
     registerPage.deiconify()
     MainPage.withdraw()
@@ -138,10 +142,12 @@ registerbutton.grid(row=2, column=0)
 username_verify = StringVar()
 password_verify = StringVar()
 
+
 # ------hideLoginSuccessPage-----
 
 def hideloginsuccess():
     LoginSuccessPage.withdraw()
+
 
 # --------LoginSuccessPage-------
 
@@ -152,7 +158,8 @@ def login_success():
     MainPage.withdraw()
     patientpage()
 
-#--------verification----------
+
+# --------verification----------
 
 
 def user_not_found():
@@ -160,9 +167,8 @@ def user_not_found():
     Label(UserNotFoundPage, text="User not found").pack()
     Button(UserNotFoundPage, text="OK", command=UserNotFoundPage.withdraw).pack()
 
+
 # --------LoginSuccess---------
-
-
 
 
 def patientpage():
@@ -178,7 +184,7 @@ def patientpage():
         PatNames.append(row["firstname"])
 
     frame = Frame(patientWindow, height=200, width=400, highlightbackground="gold2", highlightthickness=2, bg="gold2",
-                      relief="solid")
+                  relief="solid")
     frame.place(x=500, y=300)
 
     profilePic = Label(patientWindow, height=8, width=15, bg="green")
@@ -209,15 +215,15 @@ def patientpage():
     doc_notes = Label(patientWindow, text="Doctors Notes", height=8, width=20, relief="solid", bg="gold2")
     doc_notes.place(x=735, y=10)
 
-    #img = PhotoImage(file='MicrosoftTeams-image.png')
-    #banner = Label(patientWindow, image=img, width=195, height=100)
-    #banner.image = img
-    #banner.place(x=380, y=20)
-
+    img = PhotoImage(file='MicrosoftTeams-image-smolish.png')
+    banner = Label(patientWindow, image=img, width=100, height=65)
+    banner.image = img
+    banner.place(x=380, y=20)
 
 
 username = StringVar()
 password = StringVar()
+
 
 # ---------Labels---------
 
@@ -232,8 +238,5 @@ password_entry.config(show='*')
 password_entry.pack()
 Label(registerPage, text="").pack()
 Button(registerPage, text="Register", width=10, height=1, command=register_user).pack()
-
-
-
 
 mainloop()
