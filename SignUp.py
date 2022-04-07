@@ -45,6 +45,12 @@ LoginPage.geometry("300x250")
 LoginPage.config(bg="grey38")
 LoginPage.withdraw()
 
+DocWindow = Toplevel(MainPage)
+DocWindow.title("MediApp")
+DocWindow.geometry("300x550")
+DocWindow.resizable(False, False)
+DocWindow.withdraw()
+
 LoginSuccessPage = Toplevel(MainPage)
 LoginSuccessPage.withdraw()
 # -------Main Page-------
@@ -96,8 +102,6 @@ class Test(unittest.TestCase):
 print(unittest)
 
 
-
-
 def login_verify():
     username1 = username_entry1.get()
     password1 = password_entry1.get()
@@ -105,7 +109,6 @@ def login_verify():
     username_entry1.delete(0, END)
     password_entry1.delete(0, END)
 
-    file = open("CSV_New.csv", "r")
     verify = dataframe.iloc[0, 1]
     if username1 and password1 in verify:
         login_success()
@@ -189,11 +192,23 @@ def hideloginsuccess():
 
 
 def login_success():
+    global username1
+    global password1
+
     Button(LoginSuccessPage, text="OK", command=hideloginsuccess).pack()
     LoginSuccessPage.withdraw()
     LoginPage.withdraw()
     MainPage.withdraw()
-    patientpage()
+
+    searching = dataframe.loc[dataframe["Username"] + dataframe["Password"] == username_entry1.get() + password_entry1.get()]
+    index = searching.index
+
+    type_temp = dataframe["Type"]
+
+    if type_temp[index] == "Doctor":
+        doctorpage()
+    elif type_temp[index] == "Patient":
+        patientpage()
 
 
 # --------verification----------
@@ -239,6 +254,38 @@ def patientpage():
     curmed.place(x=160, y=240)
 
     envdat = Label(patientWindow, text="Environmental Data", height=8, width=40, relief="solid", bg="gold2")
+    envdat.place(x=7, y=400)
+
+def doctorpage():
+    DocWindow.deiconify()
+
+    frame = Frame(DocWindow, height=66, width=200, highlightbackground="gold2", highlightthickness=2, bg="gold2",
+                  relief="solid")
+    frame.place(x=80, y=10)
+
+    profilePic = Label(DocWindow, height=4, width=8, bg="green")
+    profilePic.place(x=7, y=10)
+
+    name = Label(frame, text="Name:   ", bg="gold2")
+    name.grid(column=0, row=0)
+    sex = Label(frame, text="Sex:   ", bg="gold2")
+    sex.grid(column=0, row=1)
+    DoB = Label(frame, text="DoB:   ", bg="gold2")
+    DoB.grid(column=0, row=2)
+
+    settings = Button(text=u"\u2699", height=2, width=4, bg="grey48")
+    settings.place(x=260, y=15)
+
+    appointments = Label(DocWindow, text="Appointments", height=10, width=40, relief="solid", bg="gold2")
+    appointments.place(x=7, y=80)
+
+    meddat = Label(DocWindow, text="Current Prescriptions", height=10, width=18, relief="solid", bg="gold2")
+    meddat.place(x=7, y=240)
+
+    curmed = Label(DocWindow, text="Current Patients", height=10, width=18, relief="solid", bg="gold2")
+    curmed.place(x=160, y=240)
+
+    envdat = Label(DocWindow, text="Patient Medical Records", height=8, width=40, relief="solid", bg="gold2")
     envdat.place(x=7, y=400)
 
 
